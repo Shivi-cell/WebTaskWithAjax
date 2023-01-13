@@ -16,8 +16,8 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @PostMapping
-    public String Save(@RequestBody Person person) {
+    @PostMapping("/save")
+    public Person Save(@RequestBody Person person) {
         return personService.save(person);
     }
 
@@ -33,13 +33,13 @@ public class PersonController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Person>> getAll() {
-
         return new ResponseEntity<List<Person>>(personService.getAll(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         personService.delete(id);
+        System.out.println("delete method called"+id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -48,9 +48,9 @@ public class PersonController {
         personService.deleteAll();
     }
 
-    @PutMapping
-    public ResponseEntity<String> updatePerson(@RequestBody Person person) {
-        return new ResponseEntity<String>(personService.save(person), HttpStatus.OK);
+    @PutMapping("/update")
+    public ResponseEntity<Person> updatePerson(@RequestBody Person person) {
+        return new ResponseEntity<Person>(personService.save(person), HttpStatus.OK);
     }
 
 }

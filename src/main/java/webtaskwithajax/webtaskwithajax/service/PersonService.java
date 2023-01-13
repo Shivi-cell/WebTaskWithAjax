@@ -5,7 +5,7 @@ import webtaskwithajax.webtaskwithajax.entity.Person;
 import java.util.List;
 
 public interface PersonService {
-    String save(Person person);
+    Person save(Person person);
 
     List<Person> getPersonStartWith(String name);
 
