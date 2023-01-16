@@ -14,11 +14,10 @@ $(document).ready(function () {
             {   data: 'age' },
             {   data: 'address' },
             {   'defaultContent' : '<button id="delete" >Delete</button>'}
-
         ]
     });
 
-
+    // inserting the data in dataTable
     $.ajax({
         url: "http://localhost:8080/person/all",
         method: "GET",
@@ -31,6 +30,7 @@ $(document).ready(function () {
         }
     });
 
+    // adding person by the modal form
     $('#addForm').click(function () {
         let person = {};
         person.firstName = $('#firstName').val();
@@ -51,12 +51,12 @@ $(document).ready(function () {
                 resetForm();
             },
             error: function (error) {
-                swal("Bad Request", "Record added successfully", "error");
+                swal("Bad Request", ""+error, "error");
             }
         });
     });
 
-
+    // deleting the particular record (row) from the dataTable
     $('#datatable tbody').on('click', '#delete', function () {
         let row = $(this).closest('tr');
         let data = tableInstance.row( row ).data();
@@ -81,13 +81,13 @@ $(document).ready(function () {
         let row = $(this).closest('tr');
         let data = tableInstance.row( row ).data();
         let person = data.personId;
-        console.log(person);
         $('#firstNameU').val(data.firstName);
         $('#lastNameU').val(data.lastName);
         $('#ageU').val(data.age);
         $('#addressU').val(data.address);
     });
 
+    // updating the record in dataTable
     $('#updateForm').click(function () {
         let person = {};
         let r = $('#editLink').closest('tr');
@@ -116,11 +116,10 @@ $(document).ready(function () {
         });
     });
 
-
-
+// resetting form after closing the modal
     let resetForm = function(){
         $('form').each(function(i, element){
             $(element)[0].reset();
-        })
+        });
     }
 });

@@ -43,7 +43,7 @@ public class PersonController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/deleteAll")
     public void deleteAll() {
         personService.deleteAll();
     }

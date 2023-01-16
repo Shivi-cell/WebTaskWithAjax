@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/resources/css/custom.css">
 </head>
 <body>
-    <h2>Person Details</h2>
+    <h2 style="text-align: center">Person Details</h2>
     <div id="table" style="background-color: aliceblue;">
         <table id="datatable">
             <thead>
@@ -31,7 +31,9 @@
             </thead>
         </table>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add Person</button>
+    <div style="text-align: center">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add Person</button>
+    </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -66,7 +68,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<%--                    <button type="reset" class="btn btn-secondary" style="display: none">Reset</button>--%>
                     <button type="button" class="btn btn-primary" id="addForm">Add Record</button>
                 </div>
             </div>
