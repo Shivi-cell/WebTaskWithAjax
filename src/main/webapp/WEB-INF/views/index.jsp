@@ -115,5 +115,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/resources/js/custom.js"></script>
+    <script src="/resources/js/ajaxCall.js"></script>
 </body>
 </html>
