@@ -1,18 +1,3 @@
-/*function getAllProducts(url,method){
-    $.ajax({
-        url: url,
-        method: method,
-        dataType: "json",
-        success: function (data) {
-
-        },
-        error:function (jqxhr, textStatus, error){
-            swal("Oh!", "Something went wrong!", "error");
-        }
-    });
-}*/
-
-
 function ajaxCallFetch(url, method) {
     return new Promise((resolve, reject) => {
         $.ajax({

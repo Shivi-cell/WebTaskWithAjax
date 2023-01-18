@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Title</title>
@@ -85,6 +86,7 @@
                 </div>
                 <div class="modal-body " id="updateModalBody">
                     <form>
+                        <input type="hidden" id="person-id" />
                         <div class="form-group">
                             <label for="firstName" class="col-form-label">First name</label>
                             <input type="text" class="form-control" id="firstNameU" name="firstName">

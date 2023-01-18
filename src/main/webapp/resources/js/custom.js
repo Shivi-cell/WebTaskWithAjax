@@ -7,7 +7,7 @@ $(document).ready(function () {
         columns: [
             {   data : 'firstName',
                 render : function (firstName, type, row, meta){
-                    return `<a data-toggle="modal" data-target="#updateModal" id="editLink">${firstName}</a>`;
+                    return `<a data-toggle="modal" data-target="#updateModal" class="editLink">${firstName}</a>`;
                 },
             },
             {   data: 'lastName' },
@@ -100,44 +100,50 @@ $(document).ready(function () {
     });
 
     // editLink Query
-    let a = $('#datatable tbody').on('click', '#editLink', function () {
+    let a = $('#datatable tbody').on('click', 'a', function () {
         // $(this).toggleClass('selectRow');
         let row = $(this).closest('tr');
         let data = tableInstance.row(row).data();
-        let id = data.personId;
         $('#firstNameU').val(data.firstName);
         $('#lastNameU').val(data.lastName);
         $('#ageU').val(data.age);
         $('#addressU').val(data.address);
+        $('#person-id"').val(data.personId);
+        console.log(data);
+    });
 
-        $('#updateForm').click(function (){
-            let person = {};
-            person.personId = id;
-            person.firstName = $('#firstNameU').val();
-            person.lastName = $('#lastNameU').val();
-            person.age = $('#ageU').val();
-            person.address = $('#addressU').val();
-
-            let personJSON = JSON.stringify(person);
-            $.ajax({
-                url: 'http://localhost:8080/person/update',
-                method: 'PUT',
-                data: personJSON,
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    tableInstance.row(row).data(data).draw();
-                    swal("Success", "Record updated successfully", "success");
-                    $("#updateModal").modal('hide');
-                    resetForm();
-                },
-                error: function (error) {
-                    swal("Bad Request", "Record not updated", "error");
-                    $("#updateModal").modal('hide');
-                    resetForm();
-                }
-            });
+    $('#updateForm').click(function (){
+        let person = {};
+        person.personId = $('#person-id"').val();
+        person.firstName = $('#firstNameU').val();
+        person.lastName = $('#lastNameU').val();
+        person.age = $('#ageU').val();
+        person.address = $('#addressU').val();
+        let personJSON = JSON.stringify(person);
+        console.log(data);
+        $.ajax({
+            url: 'http://localhost:8080/person/update',
+            method: 'PUT',
+            data: personJSON,
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                console.log("updated row data");
+                console.log(data);
+                tableInstance.row(row).data(data).draw();
+                swal("Success", "Record updated successfully", "success");
+                $("#updateModal").modal('hide');
+                resetForm();
+                row = null; data = null;
+            },
+            error: function (error) {
+                swal("Bad Request", "Record not updated", "error");
+                $("#updateModal").modal('hide');
+                resetForm();
+                row = null; data = null;
+            }
         });
     });
+
 
     // updating the record in dataTable
     /*$('#updateForm').click(function () {
